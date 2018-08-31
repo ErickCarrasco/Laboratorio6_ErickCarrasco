@@ -21,6 +21,7 @@ public class Menu_Principal extends javax.swing.JFrame {
     administrarUsuarios ap = new administrarUsuarios("./Usuarios.txt");
     administrarPeliculas peliAdmin = new administrarPeliculas("./Peliculas.txt");
     administrarSeries serieAdmin = new administrarSeries("./Series.txt");
+    int flag;
     
     /**
      * Creates new form Menu_Principal
@@ -97,6 +98,8 @@ public class Menu_Principal extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         js_addseri_temps = new javax.swing.JSpinner();
         PopUp_menunetflis = new javax.swing.JPopupMenu();
+        jmi_listar_pcs = new javax.swing.JMenuItem();
+        jmi_eliminar_pcs = new javax.swing.JMenuItem();
         PopUp_PS_Opciones = new javax.swing.JPopupMenu();
         jmi_guardar_actualizar = new javax.swing.JMenuItem();
         jmi_logout = new javax.swing.JMenuItem();
@@ -190,6 +193,11 @@ public class Menu_Principal extends javax.swing.JFrame {
         });
 
         jb_add_serie.setText("Series");
+        jb_add_serie.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_add_serieMouseClicked(evt);
+            }
+        });
 
         jb_salir_seleccion.setText("Salir");
         jb_salir_seleccion.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -506,6 +514,22 @@ public class Menu_Principal extends javax.swing.JFrame {
                 .addGap(34, 34, 34))
         );
 
+        jmi_listar_pcs.setText("Listar");
+        jmi_listar_pcs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_listar_pcsActionPerformed(evt);
+            }
+        });
+        PopUp_menunetflis.add(jmi_listar_pcs);
+
+        jmi_eliminar_pcs.setText("Eliminar");
+        jmi_eliminar_pcs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_eliminar_pcsActionPerformed(evt);
+            }
+        });
+        PopUp_menunetflis.add(jmi_eliminar_pcs);
+
         jmi_guardar_actualizar.setText("Guardar");
         jmi_guardar_actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -794,6 +818,54 @@ public class Menu_Principal extends javax.swing.JFrame {
             modeloARBOL.reload();
             counter++;
         }
+        //Archivo2
+        serieAdmin.cargarArchivo();
+        String nombre1, categoria1, actores1, company1, idioma1, doblaje1, subtitles1;
+        int duracion1, temp;
+        int centinela1=-1;
+        int count1=0;
+        for (Serie p : serieAdmin.getListaSeries()) {
+            nombre1 = serieAdmin.getListaSeries().get(count1).getNombre();
+            duracion1 = serieAdmin.getListaSeries().get(count1).getDuracion();
+            categoria1 = serieAdmin.getListaSeries().get(count1).getCategoria();
+            actores1 = serieAdmin.getListaSeries().get(count1).getActores();
+            temp = serieAdmin.getListaSeries().get(count1).getTemp();
+            company1 = serieAdmin.getListaSeries().get(count1).getCompany();
+            idioma1 = serieAdmin.getListaSeries().get(count1).getIdioma();
+            doblaje1 = serieAdmin.getListaSeries().get(count1).getDoblajevalidate();
+            subtitles1 = serieAdmin.getListaSeries().get(count1).getConsubtitulos();
+            
+            
+            for (int i = 0; i < raiz.getChildCount(); i++) {
+                if (raiz.getChildAt(i).toString().equals(categoria1)) {
+                    DefaultMutableTreeNode s
+                            = new DefaultMutableTreeNode (
+                                    new Serie(nombre1, duracion1, categoria1,actores1,
+                                    temp, company1, idioma1, doblaje1, subtitles1));
+                            
+                    ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(s);
+                    centinela1 =1;
+                }
+            }
+            
+            if (centinela1 == -1) {
+            DefaultMutableTreeNode n
+                    = new DefaultMutableTreeNode(categoria1);
+            DefaultMutableTreeNode s
+                    = new DefaultMutableTreeNode(
+                            new Serie(nombre1, duracion1, categoria1,actores1,
+                                    temp, company1, idioma1, doblaje1, subtitles1)
+                    );
+            n.add(s);
+            raiz.add(n);
+
+        }
+            modeloARBOL.reload();
+            count1++;
+            
+        }
+        
+        
         
         jd_ventana_secundaria.dispose();
         jd_ventana_secundaria.setVisible(false);
@@ -859,15 +931,15 @@ public class Menu_Principal extends javax.swing.JFrame {
         int centinela1=-1;
         int count1=0;
         for (Serie p : serieAdmin.getListaSeries()) {
-            nombre1 = serieAdmin.getListaSeries().get(count).getNombre();
-            duracion1 = serieAdmin.getListaSeries().get(count).getDuracion();
-            categoria1 = serieAdmin.getListaSeries().get(count).getCategoria();
-            actores1 = serieAdmin.getListaSeries().get(count).getActores();
-            temp = serieAdmin.getListaSeries().get(count).getTemp();
-            company1 = serieAdmin.getListaSeries().get(count).getCompany();
-            idioma1 = serieAdmin.getListaSeries().get(count).getIdioma();
-            doblaje1 = serieAdmin.getListaSeries().get(count).getDoblajevalidate();
-            subtitles1 = serieAdmin.getListaSeries().get(count).getConsubtitulos();
+            nombre1 = serieAdmin.getListaSeries().get(count1).getNombre();
+            duracion1 = serieAdmin.getListaSeries().get(count1).getDuracion();
+            categoria1 = serieAdmin.getListaSeries().get(count1).getCategoria();
+            actores1 = serieAdmin.getListaSeries().get(count1).getActores();
+            temp = serieAdmin.getListaSeries().get(count1).getTemp();
+            company1 = serieAdmin.getListaSeries().get(count1).getCompany();
+            idioma1 = serieAdmin.getListaSeries().get(count1).getIdioma();
+            doblaje1 = serieAdmin.getListaSeries().get(count1).getDoblajevalidate();
+            subtitles1 = serieAdmin.getListaSeries().get(count1).getConsubtitulos();
             
             
             for (int i = 0; i < raiz.getChildCount(); i++) {
@@ -878,11 +950,11 @@ public class Menu_Principal extends javax.swing.JFrame {
                                     temp, company1, idioma1, doblaje1, subtitles1));
                             
                     ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(s);
-                    centinela =1;
+                    centinela1 =1;
                 }
             }
             
-            if (centinela == -1) {
+            if (centinela1 == -1) {
             DefaultMutableTreeNode n
                     = new DefaultMutableTreeNode(categoria1);
             DefaultMutableTreeNode s
@@ -895,7 +967,7 @@ public class Menu_Principal extends javax.swing.JFrame {
 
         }
             modeloARBOL.reload();
-            count++;
+            count1++;
             
         }
         
@@ -908,6 +980,29 @@ public class Menu_Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (evt.isMetaDown()) {
             int row = jt_netflis.getClosestRowForLocation(evt.getX(),evt.getY());
+            jt_netflis.setSelectionRow(row);
+            
+            Object v1
+                    = jt_netflis.getSelectionPath().
+                            getLastPathComponent();
+            nodo_seleccionado = (DefaultMutableTreeNode) v1;
+            if (nodo_seleccionado.getUserObject() instanceof Pelicula) {
+                pelicula_seleccionada
+                        = (Pelicula)  nodo_seleccionado.
+                                getUserObject();
+                PopUp_menunetflis.show(evt.getComponent(), 
+                        evt.getX(), evt.getY());
+                flag =1;
+            }
+            
+            if (nodo_seleccionado.getUserObject() instanceof Serie) {
+                serie_seleccionada
+                        = (Serie)  nodo_seleccionado.
+                                getUserObject();
+                PopUp_menunetflis.show(evt.getComponent(), 
+                        evt.getX(), evt.getY());
+                flag=2;
+            }
             
         }
     }//GEN-LAST:event_jt_netflisMouseClicked
@@ -940,9 +1035,9 @@ public class Menu_Principal extends javax.swing.JFrame {
             
         } catch (IOException ex) {
             //Logger.getLogger(Menu_Principal.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(jd_pelicula_agregar, "A Fatal error ocurred");
+            JOptionPane.showMessageDialog(jd_serie_agregar, "A Fatal error ocurred");
         }
-        JOptionPane.showMessageDialog(jd_pelicula_agregar, "Edit complete...");
+        JOptionPane.showMessageDialog(jd_serie_agregar, "Edit complete...");
         tf_addSerie_nombre.setText("");
         tf_addPeli_company1.setText("");
         js_addseri_duracion1.setValue(0);
@@ -954,6 +1049,73 @@ public class Menu_Principal extends javax.swing.JFrame {
         jd_serie_agregar.setVisible(false);
         
     }//GEN-LAST:event_jb_addSerie_guardarMouseClicked
+
+    private void jb_add_serieMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_add_serieMouseClicked
+        // TODO add your handling code here:
+        jd_serie_agregar.setModal(true);
+        jd_serie_agregar.pack();
+        jd_serie_agregar.setLocationRelativeTo(jd_seleccion);
+        jd_serie_agregar.setVisible(true);
+    }//GEN-LAST:event_jb_add_serieMouseClicked
+
+    private void jmi_eliminar_pcsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_eliminar_pcsActionPerformed
+        // TODO add your handling code here:
+        int response = JOptionPane.showConfirmDialog(
+                jd_ventana_secundaria,
+                "Seguro de eliminar?",
+                "Confirm",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+      
+        if (response == JOptionPane.OK_OPTION) {
+            DefaultTreeModel m
+                    = (DefaultTreeModel) jt_netflis.getModel();
+            m.removeNodeFromParent(
+                    nodo_seleccionado
+            );
+            m.reload();
+        }
+    }//GEN-LAST:event_jmi_eliminar_pcsActionPerformed
+
+    private void jmi_listar_pcsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_listar_pcsActionPerformed
+        // TODO add your handling code here:
+        ta_1_arbol.setText("");
+        int response = JOptionPane.showConfirmDialog(
+                jd_ventana_secundaria,
+                "Listar?",
+                "Confirm",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+      
+        if (response == JOptionPane.OK_OPTION) {
+            DefaultTreeModel m
+                    = (DefaultTreeModel) jt_netflis.getModel();
+            if (flag==1) {
+                ta_1_arbol.append("Titulo: "+pelicula_seleccionada.getNombre()+"\n"
+                        + "Duracion: " +pelicula_seleccionada.getDuracion()+"\n"
+                        + "Actores: "+ pelicula_seleccionada.getActores()+"\n"
+                        + "Director: "+ pelicula_seleccionada.getDirector()+"\n"
+                        + "Company: "+pelicula_seleccionada.getCompany()+"\n"
+                        + "Idioma original: "+ pelicula_seleccionada.getIdioma()+"\n"
+                        + "Doblaje: "+pelicula_seleccionada.getDoblajevalidate()+"\n"
+                        + "Subitutilado: "+ pelicula_seleccionada.getConsubtitulos()+"\n"
+                );
+            }
+            if (flag==2) {
+                ta_1_arbol.append("Titulo: "+serie_seleccionada.getNombre()+"\n"
+                        + "Duracion por capitulo: " +serie_seleccionada.getDuracion()+"\n"
+                        + "Actores: "+ serie_seleccionada.getActores()+"\n"
+                        + "Temporadas: "+ serie_seleccionada.getTemp()+"\n"
+                        + "Company: "+serie_seleccionada.getCompany()+"\n"
+                        + "Idioma original: "+ serie_seleccionada.getIdioma()+"\n"
+                        + "Doblaje: "+serie_seleccionada.getDoblajevalidate()+"\n"
+                        + "Subitutilado: "+ serie_seleccionada.getConsubtitulos()+"\n"
+                );
+            }
+            
+            
+        }
+    }//GEN-LAST:event_jmi_listar_pcsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1039,7 +1201,9 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JDialog jd_seleccion;
     private javax.swing.JDialog jd_serie_agregar;
     private javax.swing.JDialog jd_ventana_secundaria;
+    private javax.swing.JMenuItem jmi_eliminar_pcs;
     private javax.swing.JMenuItem jmi_guardar_actualizar;
+    private javax.swing.JMenuItem jmi_listar_pcs;
     private javax.swing.JMenuItem jmi_logout;
     private javax.swing.JMenuItem jmi_shutdown;
     private javax.swing.JSpinner js_addPeli_duracion;
@@ -1060,4 +1224,7 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_addserie_categ;
     private javax.swing.JTextField tf_user;
     // End of variables declaration//GEN-END:variables
+    DefaultMutableTreeNode nodo_seleccionado;
+    Serie serie_seleccionada;
+    Pelicula pelicula_seleccionada;
 }

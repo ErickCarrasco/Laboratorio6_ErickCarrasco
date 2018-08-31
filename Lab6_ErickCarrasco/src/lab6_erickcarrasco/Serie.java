@@ -109,9 +109,9 @@ public class Serie {
 
     @Override
     public String toString() {
-        return "Serie: " + "nombre: " + nombre + " duracion: " + duracion +" mins "+ " categoria: " + categoria + ""
-                + " actores: " + actores + " temporadas " + temp + " company: " + company + " idioma: " + idioma + 
-                " doblaje en esp :" + doblajevalidate + " con subtitulos en esp: " + consubtitulos ;
+        return "Serie: " + "Nombre: " + nombre + " Duracion: " + duracion +" Mins "+ " Categoria: " + categoria + ""
+                + " Actores: " + actores + " Temporadas " + temp + " Company: " + company + " Idioma: " + idioma + 
+                " Doblaje en esp :" + doblajevalidate + " Con subtitulos en esp: " + consubtitulos ;
     }
     
     
