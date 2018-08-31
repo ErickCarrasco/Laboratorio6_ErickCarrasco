@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -18,7 +20,7 @@ public class Menu_Principal extends javax.swing.JFrame {
 
     administrarUsuarios ap = new administrarUsuarios("./Usuarios.txt");
     administrarPeliculas peliAdmin = new administrarPeliculas("./Peliculas.txt");
-
+    administrarSeries serieAdmin = new administrarSeries("./Series.txt");
     
     /**
      * Creates new form Menu_Principal
@@ -39,9 +41,9 @@ public class Menu_Principal extends javax.swing.JFrame {
 
         jd_ventana_secundaria = new javax.swing.JDialog();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
+        jt_netflis = new javax.swing.JTree();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        ta_1_arbol = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         jb_agregar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -49,6 +51,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jb_add_peli = new javax.swing.JButton();
         jb_add_serie = new javax.swing.JButton();
+        jb_salir_seleccion = new javax.swing.JButton();
         jd_pelicula_agregar = new javax.swing.JDialog();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -72,7 +75,32 @@ public class Menu_Principal extends javax.swing.JFrame {
         cb_addPeli_subtitles = new javax.swing.JComboBox();
         jb_addPeli_guardarDATA = new javax.swing.JButton();
         jd_serie_agregar = new javax.swing.JDialog();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        tf_addSerie_nombre = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        js_addseri_duracion1 = new javax.swing.JSpinner();
+        jLabel17 = new javax.swing.JLabel();
+        tf_addserie_categ = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        ta_addseri_actores1 = new javax.swing.JTextArea();
+        jLabel21 = new javax.swing.JLabel();
+        tf_addPeli_company1 = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        tf_addPeli_Idioma1 = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        cb_addPeli_doblaje1 = new javax.swing.JComboBox();
+        jLabel24 = new javax.swing.JLabel();
+        cb_addPeli_subtitles1 = new javax.swing.JComboBox();
+        jb_addSerie_guardar = new javax.swing.JButton();
+        jLabel25 = new javax.swing.JLabel();
+        js_addseri_temps = new javax.swing.JSpinner();
         PopUp_menunetflis = new javax.swing.JPopupMenu();
+        PopUp_PS_Opciones = new javax.swing.JPopupMenu();
+        jmi_guardar_actualizar = new javax.swing.JMenuItem();
+        jmi_logout = new javax.swing.JMenuItem();
+        jmi_shutdown = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -81,12 +109,17 @@ public class Menu_Principal extends javax.swing.JFrame {
         jb_ingresar = new javax.swing.JButton();
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Nesflis");
-        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jScrollPane1.setViewportView(jTree1);
+        jt_netflis.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jt_netflis.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jt_netflisMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jt_netflis);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        ta_1_arbol.setColumns(20);
+        ta_1_arbol.setRows(5);
+        jScrollPane2.setViewportView(ta_1_arbol);
 
         jLabel4.setFont(new java.awt.Font("Eurostile Extended", 0, 18)); // NOI18N
         jLabel4.setText("Info");
@@ -98,45 +131,52 @@ public class Menu_Principal extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Account");
+        jButton1.setText("Opciones");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jd_ventana_secundariaLayout = new javax.swing.GroupLayout(jd_ventana_secundaria.getContentPane());
         jd_ventana_secundaria.getContentPane().setLayout(jd_ventana_secundariaLayout);
         jd_ventana_secundariaLayout.setHorizontalGroup(
             jd_ventana_secundariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_ventana_secundariaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(241, 241, 241))
             .addGroup(jd_ventana_secundariaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jd_ventana_secundariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jd_ventana_secundariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_ventana_secundariaLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(87, Short.MAX_VALUE))
                     .addGroup(jd_ventana_secundariaLayout.createSequentialGroup()
                         .addComponent(jb_agregar)
-                        .addGap(320, 320, 320)
-                        .addComponent(jButton1))
-                    .addGroup(jd_ventana_secundariaLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(71, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(166, 166, 166))))
+            .addGroup(jd_ventana_secundariaLayout.createSequentialGroup()
+                .addGap(344, 344, 344)
+                .addComponent(jLabel4)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jd_ventana_secundariaLayout.setVerticalGroup(
             jd_ventana_secundariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_ventana_secundariaLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jd_ventana_secundariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE))
+                .addGroup(jd_ventana_secundariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_ventana_secundariaLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_ventana_secundariaLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jb_agregar)
-                .addContainerGap(32, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_ventana_secundariaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addGroup(jd_ventana_secundariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jb_agregar)
+                    .addComponent(jButton1))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jLabel5.setFont(new java.awt.Font("Eurostile Extended", 0, 24)); // NOI18N
@@ -151,18 +191,30 @@ public class Menu_Principal extends javax.swing.JFrame {
 
         jb_add_serie.setText("Series");
 
+        jb_salir_seleccion.setText("Salir");
+        jb_salir_seleccion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_salir_seleccionMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jd_seleccionLayout = new javax.swing.GroupLayout(jd_seleccion.getContentPane());
         jd_seleccion.getContentPane().setLayout(jd_seleccionLayout);
         jd_seleccionLayout.setHorizontalGroup(
             jd_seleccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_seleccionLayout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addGroup(jd_seleccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jd_seleccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jd_seleccionLayout.createSequentialGroup()
-                        .addComponent(jb_add_peli)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jb_add_serie))
-                    .addComponent(jLabel5))
+                        .addGap(76, 76, 76)
+                        .addGroup(jd_seleccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jd_seleccionLayout.createSequentialGroup()
+                                .addComponent(jb_add_peli)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jb_add_serie))
+                            .addComponent(jLabel5)))
+                    .addGroup(jd_seleccionLayout.createSequentialGroup()
+                        .addGap(173, 173, 173)
+                        .addComponent(jb_salir_seleccion)))
                 .addContainerGap(100, Short.MAX_VALUE))
         );
         jd_seleccionLayout.setVerticalGroup(
@@ -174,7 +226,9 @@ public class Menu_Principal extends javax.swing.JFrame {
                 .addGroup(jd_seleccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jb_add_peli)
                     .addComponent(jb_add_serie))
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addComponent(jb_salir_seleccion)
+                .addGap(47, 47, 47))
         );
 
         jLabel6.setFont(new java.awt.Font("Eurostile Extended", 0, 18)); // NOI18N
@@ -309,16 +363,172 @@ public class Menu_Principal extends javax.swing.JFrame {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
+        jLabel15.setFont(new java.awt.Font("Eurostile Extended", 0, 18)); // NOI18N
+        jLabel15.setText("Agregar Serie");
+
+        jLabel16.setText("Nombre: ");
+
+        jLabel20.setText("Duracion (mins)");
+
+        jLabel17.setText("Categoria");
+
+        jLabel18.setText("Actores");
+
+        ta_addseri_actores1.setColumns(20);
+        ta_addseri_actores1.setRows(5);
+        jScrollPane4.setViewportView(ta_addseri_actores1);
+
+        jLabel21.setText("Company");
+
+        jLabel22.setText("Idioma ");
+
+        jLabel23.setText("Doblaje");
+
+        cb_addPeli_doblaje1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Si", "No" }));
+
+        jLabel24.setText("Con subtitulos en espaniol");
+
+        cb_addPeli_subtitles1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Con subtitulos en esp", "Sin subtitulos en esp" }));
+
+        jb_addSerie_guardar.setText("Guardar");
+        jb_addSerie_guardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_addSerie_guardarMouseClicked(evt);
+            }
+        });
+
+        jLabel25.setText("Temporadas");
+
         javax.swing.GroupLayout jd_serie_agregarLayout = new javax.swing.GroupLayout(jd_serie_agregar.getContentPane());
         jd_serie_agregar.getContentPane().setLayout(jd_serie_agregarLayout);
         jd_serie_agregarLayout.setHorizontalGroup(
             jd_serie_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jd_serie_agregarLayout.createSequentialGroup()
+                .addGroup(jd_serie_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_serie_agregarLayout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addComponent(jLabel15)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jd_serie_agregarLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addGroup(jd_serie_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jd_serie_agregarLayout.createSequentialGroup()
+                                .addComponent(jLabel25)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(js_addseri_temps, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2))
+                            .addGroup(jd_serie_agregarLayout.createSequentialGroup()
+                                .addComponent(jLabel24)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cb_addPeli_subtitles1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jd_serie_agregarLayout.createSequentialGroup()
+                                .addGroup(jd_serie_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel22)
+                                    .addComponent(jLabel23))
+                                .addGroup(jd_serie_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jd_serie_agregarLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cb_addPeli_doblaje1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jd_serie_agregarLayout.createSequentialGroup()
+                                        .addGap(23, 23, 23)
+                                        .addComponent(tf_addPeli_Idioma1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jd_serie_agregarLayout.createSequentialGroup()
+                                .addGroup(jd_serie_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jd_serie_agregarLayout.createSequentialGroup()
+                                        .addComponent(jLabel20)
+                                        .addGap(133, 133, 133)
+                                        .addComponent(js_addseri_duracion1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jd_serie_agregarLayout.createSequentialGroup()
+                                        .addGroup(jd_serie_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel16)
+                                            .addComponent(jLabel17)
+                                            .addComponent(jLabel18)
+                                            .addComponent(jLabel21))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jd_serie_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(tf_addSerie_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                                            .addComponent(tf_addserie_categ)
+                                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(tf_addPeli_company1))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap(73, Short.MAX_VALUE))
+            .addGroup(jd_serie_agregarLayout.createSequentialGroup()
+                .addGap(145, 145, 145)
+                .addComponent(jb_addSerie_guardar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jd_serie_agregarLayout.setVerticalGroup(
             jd_serie_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jd_serie_agregarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel15)
+                .addGap(31, 31, 31)
+                .addGroup(jd_serie_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(tf_addSerie_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jd_serie_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(js_addseri_duracion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jd_serie_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_serie_agregarLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel17))
+                    .addGroup(jd_serie_agregarLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(tf_addserie_categ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jd_serie_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel18)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
+                .addGroup(jd_serie_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel25)
+                    .addComponent(js_addseri_temps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jd_serie_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_addPeli_company1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel21))
+                .addGap(30, 30, 30)
+                .addGroup(jd_serie_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(tf_addPeli_Idioma1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jd_serie_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel23)
+                    .addComponent(cb_addPeli_doblaje1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(jd_serie_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel24)
+                    .addComponent(cb_addPeli_subtitles1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(jb_addSerie_guardar)
+                .addGap(34, 34, 34))
         );
+
+        jmi_guardar_actualizar.setText("Guardar");
+        jmi_guardar_actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_guardar_actualizarActionPerformed(evt);
+            }
+        });
+        PopUp_PS_Opciones.add(jmi_guardar_actualizar);
+
+        jmi_logout.setText("Log out");
+        jmi_logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_logoutActionPerformed(evt);
+            }
+        });
+        PopUp_PS_Opciones.add(jmi_logout);
+
+        jmi_shutdown.setText("Shut down");
+        jmi_shutdown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_shutdownActionPerformed(evt);
+            }
+        });
+        PopUp_PS_Opciones.add(jmi_shutdown);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -404,6 +614,60 @@ public class Menu_Principal extends javax.swing.JFrame {
             jd_ventana_secundaria.setVisible(true);
             pf_pass_user.setText("");
             tf_user.setText("");
+            
+            
+            //Listar Lo activo
+            DefaultTreeModel modeloARBOL
+                    = (DefaultTreeModel) jt_netflis.getModel();
+            DefaultMutableTreeNode raiz
+                    = (DefaultMutableTreeNode) modeloARBOL.getRoot();
+            //Archivo
+            peliAdmin.cargarArchivo();
+            String nombre, categoria, actores, director, company, idioma, doblaje, subtitles;
+            int duracion;
+            int centinela = -1;
+            int counter = 0;
+            for (Pelicula s : peliAdmin.getListaPeliculas()) {
+                nombre = peliAdmin.getListaPeliculas().get(counter).getNombre();
+                duracion = peliAdmin.getListaPeliculas().get(counter).getDuracion();
+                categoria = peliAdmin.getListaPeliculas().get(counter).getCategoria();
+                actores = peliAdmin.getListaPeliculas().get(counter).getActores();
+                director = peliAdmin.getListaPeliculas().get(counter).getDirector();
+                company = peliAdmin.getListaPeliculas().get(counter).getCompany();
+                idioma = peliAdmin.getListaPeliculas().get(counter).getIdioma();
+                doblaje = peliAdmin.getListaPeliculas().get(counter).getDoblajevalidate();
+                subtitles = peliAdmin.getListaPeliculas().get(counter).getConsubtitulos();
+                
+                for (int i = 0; i < raiz.getChildCount(); i++) {
+                    if (raiz.getChildAt(i).toString().equals(categoria)) {
+                        DefaultMutableTreeNode p
+                                = new DefaultMutableTreeNode(
+                                        new Pelicula(nombre, duracion, categoria, actores,
+                                                director, company, idioma, doblaje, subtitles));
+                        
+                        ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
+                        centinela = 1;
+                    }
+                }
+                
+                if (centinela == -1) {
+                    DefaultMutableTreeNode n
+                            = new DefaultMutableTreeNode(categoria);
+                    DefaultMutableTreeNode p
+                            = new DefaultMutableTreeNode(
+                                    new Pelicula(nombre, duracion, categoria, actores,
+                                            director, company, idioma, doblaje, subtitles)
+                            );
+                    n.add(p);
+                    raiz.add(n);
+                    
+                }
+                modeloARBOL.reload();
+                counter++;
+                
+            }
+
+
        }else{
             JOptionPane.showMessageDialog(this, "Password or user incorrect");
             pf_pass_user.setText("");
@@ -466,6 +730,231 @@ public class Menu_Principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jb_addPeli_guardarDATAMouseClicked
 
+    private void jb_salir_seleccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_salir_seleccionMouseClicked
+        // TODO add your handling code here:
+        jd_seleccion.dispose();
+        jd_seleccion.setVisible(false);
+    }//GEN-LAST:event_jb_salir_seleccionMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        PopUp_PS_Opciones.show(evt.getComponent(), 
+                        evt.getX(), evt.getY());
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jmi_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_logoutActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(jd_ventana_secundaria, "Logging out");
+        
+        //Add archive
+        DefaultTreeModel modeloARBOL
+                = (DefaultTreeModel) jt_netflis.getModel();
+        DefaultMutableTreeNode raiz
+                = (DefaultMutableTreeNode) modeloARBOL.getRoot();
+        peliAdmin.cargarArchivo();
+        String nombre, categoria, actores, director, company, idioma, doblaje, subtitles;
+        int duracion;
+        int centinela = -1;
+        int counter = 0;
+        for (Pelicula s : peliAdmin.getListaPeliculas()) {
+            nombre = peliAdmin.getListaPeliculas().get(counter).getNombre();
+            duracion = peliAdmin.getListaPeliculas().get(counter).getDuracion();
+            categoria = peliAdmin.getListaPeliculas().get(counter).getCategoria();
+            actores = peliAdmin.getListaPeliculas().get(counter).getActores();
+            director = peliAdmin.getListaPeliculas().get(counter).getDirector();
+            company = peliAdmin.getListaPeliculas().get(counter).getCompany();
+            idioma = peliAdmin.getListaPeliculas().get(counter).getIdioma();
+            doblaje = peliAdmin.getListaPeliculas().get(counter).getDoblajevalidate();
+            subtitles = peliAdmin.getListaPeliculas().get(counter).getConsubtitulos();
+
+            for (int i = 0; i < raiz.getChildCount(); i++) {
+                if (raiz.getChildAt(i).toString().equals(categoria)) {
+                    DefaultMutableTreeNode p
+                            = new DefaultMutableTreeNode(
+                                    new Pelicula(nombre, duracion, categoria, actores,
+                                            director, company, idioma, doblaje, subtitles));
+
+                    ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
+                    centinela = 1;
+                }
+            }
+
+            if (centinela == -1) {
+                DefaultMutableTreeNode n
+                        = new DefaultMutableTreeNode(categoria);
+                DefaultMutableTreeNode p
+                        = new DefaultMutableTreeNode(
+                                new Pelicula(nombre, duracion, categoria, actores,
+                                        director, company, idioma, doblaje, subtitles)
+                        );
+                n.add(p);
+                raiz.add(n);
+
+            }
+            modeloARBOL.reload();
+            counter++;
+        }
+        
+        jd_ventana_secundaria.dispose();
+        jd_ventana_secundaria.setVisible(false);
+    }//GEN-LAST:event_jmi_logoutActionPerformed
+
+    private void jmi_guardar_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_guardar_actualizarActionPerformed
+        // TODO add your handling code here:
+        DefaultTreeModel modeloARBOL
+                    = (DefaultTreeModel) jt_netflis.getModel();
+        DefaultMutableTreeNode raiz
+                    = (DefaultMutableTreeNode) modeloARBOL.getRoot();
+        //Archivo 1
+        peliAdmin.cargarArchivo();
+        String nombre, categoria, actores, director, company, idioma, doblaje, subtitles;
+        int duracion;
+        int centinela=-1;
+        int count=0;
+        for (Pelicula s : peliAdmin.getListaPeliculas()) {
+            nombre = peliAdmin.getListaPeliculas().get(count).getNombre();
+            duracion = peliAdmin.getListaPeliculas().get(count).getDuracion();
+            categoria = peliAdmin.getListaPeliculas().get(count).getCategoria();
+            actores = peliAdmin.getListaPeliculas().get(count).getActores();
+            director = peliAdmin.getListaPeliculas().get(count).getDirector();
+            company = peliAdmin.getListaPeliculas().get(count).getCompany();
+            idioma = peliAdmin.getListaPeliculas().get(count).getIdioma();
+            doblaje = peliAdmin.getListaPeliculas().get(count).getDoblajevalidate();
+            subtitles = peliAdmin.getListaPeliculas().get(count).getConsubtitulos();
+            
+            
+            for (int i = 0; i < raiz.getChildCount(); i++) {
+                if (raiz.getChildAt(i).toString().equals(categoria)) {
+                    DefaultMutableTreeNode p
+                            = new DefaultMutableTreeNode (
+                                    new Pelicula(nombre, duracion, categoria,actores,
+                                    director, company, idioma, doblaje, subtitles));
+                            
+                    ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
+                    centinela =1;
+                }
+            }
+            
+            if (centinela == -1) {
+            DefaultMutableTreeNode n
+                    = new DefaultMutableTreeNode(categoria);
+            DefaultMutableTreeNode p
+                    = new DefaultMutableTreeNode(
+                            new Pelicula(nombre, duracion, categoria,actores,
+                                    director, company, idioma, doblaje, subtitles)
+                    );
+            n.add(p);
+            raiz.add(n);
+
+        }
+            modeloARBOL.reload();
+            count++;
+            
+        }
+        
+        //Archivo 2
+        serieAdmin.cargarArchivo();
+        String nombre1, categoria1, actores1, company1, idioma1, doblaje1, subtitles1;
+        int duracion1, temp;
+        int centinela1=-1;
+        int count1=0;
+        for (Serie p : serieAdmin.getListaSeries()) {
+            nombre1 = serieAdmin.getListaSeries().get(count).getNombre();
+            duracion1 = serieAdmin.getListaSeries().get(count).getDuracion();
+            categoria1 = serieAdmin.getListaSeries().get(count).getCategoria();
+            actores1 = serieAdmin.getListaSeries().get(count).getActores();
+            temp = serieAdmin.getListaSeries().get(count).getTemp();
+            company1 = serieAdmin.getListaSeries().get(count).getCompany();
+            idioma1 = serieAdmin.getListaSeries().get(count).getIdioma();
+            doblaje1 = serieAdmin.getListaSeries().get(count).getDoblajevalidate();
+            subtitles1 = serieAdmin.getListaSeries().get(count).getConsubtitulos();
+            
+            
+            for (int i = 0; i < raiz.getChildCount(); i++) {
+                if (raiz.getChildAt(i).toString().equals(categoria1)) {
+                    DefaultMutableTreeNode s
+                            = new DefaultMutableTreeNode (
+                                    new Serie(nombre1, duracion1, categoria1,actores1,
+                                    temp, company1, idioma1, doblaje1, subtitles1));
+                            
+                    ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(s);
+                    centinela =1;
+                }
+            }
+            
+            if (centinela == -1) {
+            DefaultMutableTreeNode n
+                    = new DefaultMutableTreeNode(categoria1);
+            DefaultMutableTreeNode s
+                    = new DefaultMutableTreeNode(
+                            new Serie(nombre1, duracion1, categoria1,actores1,
+                                    temp, company1, idioma1, doblaje1, subtitles1)
+                    );
+            n.add(s);
+            raiz.add(n);
+
+        }
+            modeloARBOL.reload();
+            count++;
+            
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_jmi_guardar_actualizarActionPerformed
+
+    private void jt_netflisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_netflisMouseClicked
+        // TODO add your handling code here:
+        if (evt.isMetaDown()) {
+            int row = jt_netflis.getClosestRowForLocation(evt.getX(),evt.getY());
+            
+        }
+    }//GEN-LAST:event_jt_netflisMouseClicked
+
+    private void jmi_shutdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_shutdownActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jmi_shutdownActionPerformed
+
+    private void jb_addSerie_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_addSerie_guardarMouseClicked
+        // TODO add your handling code here:
+        String nombre= tf_addSerie_nombre.getText();
+        int duracion = (Integer)js_addseri_duracion1.getValue();
+        int temp = (Integer)js_addseri_temps.getValue();
+        String categoria = tf_addserie_categ.getText();
+        String actores = ta_addseri_actores1.getText();
+        
+        String company = tf_addPeli_company1.getText();
+        String idioma= tf_addPeli_Idioma1.getText();
+        String doblaje = cb_addPeli_doblaje1.getSelectedItem().toString();
+        String subtitles = cb_addPeli_subtitles1.getSelectedItem().toString();
+        
+        serieAdmin.cargarArchivo();
+        
+        serieAdmin.setSeries(new Serie(nombre, duracion, categoria,actores,
+                                    temp, company, idioma, doblaje, subtitles));
+        
+        try {
+            serieAdmin.escribirArchivo();
+            
+        } catch (IOException ex) {
+            //Logger.getLogger(Menu_Principal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(jd_pelicula_agregar, "A Fatal error ocurred");
+        }
+        JOptionPane.showMessageDialog(jd_pelicula_agregar, "Edit complete...");
+        tf_addSerie_nombre.setText("");
+        tf_addPeli_company1.setText("");
+        js_addseri_duracion1.setValue(0);
+        ta_addseri_actores1.setText("");
+        tf_addserie_categ.setText("");
+        tf_addPeli_Idioma1.setText("");
+        
+        jd_serie_agregar.dispose();
+        jd_serie_agregar.setVisible(false);
+        
+    }//GEN-LAST:event_jb_addSerie_guardarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -502,10 +991,13 @@ public class Menu_Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPopupMenu PopUp_PS_Opciones;
     private javax.swing.JPopupMenu PopUp_menunetflis;
     private javax.swing.JComboBox cb_addPeli_categoria;
     private javax.swing.JComboBox cb_addPeli_doblaje;
+    private javax.swing.JComboBox cb_addPeli_doblaje1;
     private javax.swing.JComboBox cb_addPeli_subtitles;
+    private javax.swing.JComboBox cb_addPeli_subtitles1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -513,8 +1005,18 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -525,24 +1027,37 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTree jTree1;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton jb_addPeli_guardarDATA;
+    private javax.swing.JButton jb_addSerie_guardar;
     private javax.swing.JButton jb_add_peli;
     private javax.swing.JButton jb_add_serie;
     private javax.swing.JButton jb_agregar;
     private javax.swing.JButton jb_ingresar;
+    private javax.swing.JButton jb_salir_seleccion;
     private javax.swing.JDialog jd_pelicula_agregar;
     private javax.swing.JDialog jd_seleccion;
     private javax.swing.JDialog jd_serie_agregar;
     private javax.swing.JDialog jd_ventana_secundaria;
+    private javax.swing.JMenuItem jmi_guardar_actualizar;
+    private javax.swing.JMenuItem jmi_logout;
+    private javax.swing.JMenuItem jmi_shutdown;
     private javax.swing.JSpinner js_addPeli_duracion;
+    private javax.swing.JSpinner js_addseri_duracion1;
+    private javax.swing.JSpinner js_addseri_temps;
+    private javax.swing.JTree jt_netflis;
     private javax.swing.JPasswordField pf_pass_user;
+    private javax.swing.JTextArea ta_1_arbol;
     private javax.swing.JTextArea ta_addPeli_actores;
+    private javax.swing.JTextArea ta_addseri_actores1;
     private javax.swing.JTextField tf_addPeli_Idioma;
+    private javax.swing.JTextField tf_addPeli_Idioma1;
     private javax.swing.JTextField tf_addPeli_company;
+    private javax.swing.JTextField tf_addPeli_company1;
     private javax.swing.JTextField tf_addPeli_director;
     private javax.swing.JTextField tf_addPeli_nombre;
+    private javax.swing.JTextField tf_addSerie_nombre;
+    private javax.swing.JTextField tf_addserie_categ;
     private javax.swing.JTextField tf_user;
     // End of variables declaration//GEN-END:variables
 }
