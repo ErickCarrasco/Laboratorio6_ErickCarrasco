@@ -5,6 +5,9 @@
  */
 package lab6_erickcarrasco;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,6 +17,7 @@ import javax.swing.JOptionPane;
 public class Menu_Principal extends javax.swing.JFrame {
 
     administrarUsuarios ap = new administrarUsuarios("./Usuarios.txt");
+    administrarPeliculas peliAdmin = new administrarPeliculas("./Peliculas.txt");
 
     
     /**
@@ -33,12 +37,288 @@ public class Menu_Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jd_ventana_secundaria = new javax.swing.JDialog();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel4 = new javax.swing.JLabel();
+        jb_agregar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jd_seleccion = new javax.swing.JDialog();
+        jLabel5 = new javax.swing.JLabel();
+        jb_add_peli = new javax.swing.JButton();
+        jb_add_serie = new javax.swing.JButton();
+        jd_pelicula_agregar = new javax.swing.JDialog();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        tf_addPeli_nombre = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        js_addPeli_duracion = new javax.swing.JSpinner();
+        jLabel8 = new javax.swing.JLabel();
+        cb_addPeli_categoria = new javax.swing.JComboBox();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        ta_addPeli_actores = new javax.swing.JTextArea();
+        jLabel10 = new javax.swing.JLabel();
+        tf_addPeli_director = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        tf_addPeli_company = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        tf_addPeli_Idioma = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        cb_addPeli_doblaje = new javax.swing.JComboBox();
+        jLabel14 = new javax.swing.JLabel();
+        cb_addPeli_subtitles = new javax.swing.JComboBox();
+        jb_addPeli_guardarDATA = new javax.swing.JButton();
+        jd_serie_agregar = new javax.swing.JDialog();
+        PopUp_menunetflis = new javax.swing.JPopupMenu();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         pf_pass_user = new javax.swing.JPasswordField();
         tf_user = new javax.swing.JTextField();
         jb_ingresar = new javax.swing.JButton();
+
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Nesflis");
+        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane1.setViewportView(jTree1);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+
+        jLabel4.setFont(new java.awt.Font("Eurostile Extended", 0, 18)); // NOI18N
+        jLabel4.setText("Info");
+
+        jb_agregar.setText("Agregar");
+        jb_agregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_agregarMouseClicked(evt);
+            }
+        });
+
+        jButton1.setText("Account");
+
+        javax.swing.GroupLayout jd_ventana_secundariaLayout = new javax.swing.GroupLayout(jd_ventana_secundaria.getContentPane());
+        jd_ventana_secundaria.getContentPane().setLayout(jd_ventana_secundariaLayout);
+        jd_ventana_secundariaLayout.setHorizontalGroup(
+            jd_ventana_secundariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_ventana_secundariaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(241, 241, 241))
+            .addGroup(jd_ventana_secundariaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jd_ventana_secundariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jd_ventana_secundariaLayout.createSequentialGroup()
+                        .addComponent(jb_agregar)
+                        .addGap(320, 320, 320)
+                        .addComponent(jButton1))
+                    .addGroup(jd_ventana_secundariaLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(71, Short.MAX_VALUE))
+        );
+        jd_ventana_secundariaLayout.setVerticalGroup(
+            jd_ventana_secundariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_ventana_secundariaLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jd_ventana_secundariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jb_agregar)
+                .addContainerGap(32, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_ventana_secundariaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
+        );
+
+        jLabel5.setFont(new java.awt.Font("Eurostile Extended", 0, 24)); // NOI18N
+        jLabel5.setText("Haga una seleccion");
+
+        jb_add_peli.setText("Pelicula");
+        jb_add_peli.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_add_peliMouseClicked(evt);
+            }
+        });
+
+        jb_add_serie.setText("Series");
+
+        javax.swing.GroupLayout jd_seleccionLayout = new javax.swing.GroupLayout(jd_seleccion.getContentPane());
+        jd_seleccion.getContentPane().setLayout(jd_seleccionLayout);
+        jd_seleccionLayout.setHorizontalGroup(
+            jd_seleccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_seleccionLayout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addGroup(jd_seleccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jd_seleccionLayout.createSequentialGroup()
+                        .addComponent(jb_add_peli)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jb_add_serie))
+                    .addComponent(jLabel5))
+                .addContainerGap(100, Short.MAX_VALUE))
+        );
+        jd_seleccionLayout.setVerticalGroup(
+            jd_seleccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_seleccionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addGap(88, 88, 88)
+                .addGroup(jd_seleccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jb_add_peli)
+                    .addComponent(jb_add_serie))
+                .addContainerGap(160, Short.MAX_VALUE))
+        );
+
+        jLabel6.setFont(new java.awt.Font("Eurostile Extended", 0, 18)); // NOI18N
+        jLabel6.setText("Agregar Pelicula");
+
+        jLabel7.setText("Nombre: ");
+
+        jLabel19.setText("Duracion (mins)");
+
+        jLabel8.setText("Categoria");
+
+        cb_addPeli_categoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Suspenso", "Terror", "Accion", "Romanticas", "Ciencia Ficcion", "Animacion", "Fantasia" }));
+
+        jLabel9.setText("Actores");
+
+        ta_addPeli_actores.setColumns(20);
+        ta_addPeli_actores.setRows(5);
+        jScrollPane3.setViewportView(ta_addPeli_actores);
+
+        jLabel10.setText("Director");
+
+        jLabel11.setText("Company");
+
+        jLabel12.setText("Idioma ");
+
+        jLabel13.setText("Doblaje");
+
+        cb_addPeli_doblaje.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Si", "No" }));
+
+        jLabel14.setText("Con subtitulos en espaniol");
+
+        cb_addPeli_subtitles.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Con subtitulos en esp", "Sin subtitulos en esp" }));
+
+        jb_addPeli_guardarDATA.setText("Guardar datos");
+        jb_addPeli_guardarDATA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_addPeli_guardarDATAMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_pelicula_agregarLayout = new javax.swing.GroupLayout(jd_pelicula_agregar.getContentPane());
+        jd_pelicula_agregar.getContentPane().setLayout(jd_pelicula_agregarLayout);
+        jd_pelicula_agregarLayout.setHorizontalGroup(
+            jd_pelicula_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_pelicula_agregarLayout.createSequentialGroup()
+                .addGroup(jd_pelicula_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_pelicula_agregarLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jd_pelicula_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jd_pelicula_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel6)
+                                .addGroup(jd_pelicula_agregarLayout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addGap(42, 42, 42)
+                                    .addComponent(tf_addPeli_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jd_pelicula_agregarLayout.createSequentialGroup()
+                                .addGroup(jd_pelicula_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel13))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jd_pelicula_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cb_addPeli_categoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane3)
+                                    .addComponent(tf_addPeli_director)
+                                    .addComponent(tf_addPeli_company)
+                                    .addComponent(tf_addPeli_Idioma)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_pelicula_agregarLayout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(jd_pelicula_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cb_addPeli_doblaje, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(js_addPeli_duracion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(jd_pelicula_agregarLayout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cb_addPeli_subtitles, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jd_pelicula_agregarLayout.createSequentialGroup()
+                        .addGap(131, 131, 131)
+                        .addComponent(jb_addPeli_guardarDATA)))
+                .addContainerGap(129, Short.MAX_VALUE))
+        );
+        jd_pelicula_agregarLayout.setVerticalGroup(
+            jd_pelicula_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_pelicula_agregarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addGap(28, 28, 28)
+                .addGroup(jd_pelicula_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(tf_addPeli_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jd_pelicula_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(js_addPeli_duracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jd_pelicula_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(cb_addPeli_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jd_pelicula_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jd_pelicula_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_pelicula_agregarLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel10))
+                    .addGroup(jd_pelicula_agregarLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(tf_addPeli_director, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jd_pelicula_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addComponent(tf_addPeli_company, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jd_pelicula_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addComponent(tf_addPeli_Idioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jd_pelicula_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addComponent(cb_addPeli_doblaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(jd_pelicula_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(cb_addPeli_subtitles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jb_addPeli_guardarDATA)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jd_serie_agregarLayout = new javax.swing.GroupLayout(jd_serie_agregar.getContentPane());
+        jd_serie_agregar.getContentPane().setLayout(jd_serie_agregarLayout);
+        jd_serie_agregarLayout.setHorizontalGroup(
+            jd_serie_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jd_serie_agregarLayout.setVerticalGroup(
+            jd_serie_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,9 +398,73 @@ public class Menu_Principal extends javax.swing.JFrame {
         
         if (pass_verify.equals(pass) && user_verify.equals(user_auth)) {
             JOptionPane.showMessageDialog(this, "Ingreso exitosamente");
+            jd_ventana_secundaria.setModal(true);
+            jd_ventana_secundaria.pack();
+            jd_ventana_secundaria.setLocationRelativeTo(this);
+            jd_ventana_secundaria.setVisible(true);
+            pf_pass_user.setText("");
+            tf_user.setText("");
+       }else{
+            JOptionPane.showMessageDialog(this, "Password or user incorrect");
+            pf_pass_user.setText("");
         }
         
     }//GEN-LAST:event_jb_ingresarMouseClicked
+
+    private void jb_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_agregarMouseClicked
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(jd_ventana_secundaria, "Se agregara una pelicula o serie..");
+        jd_seleccion.setModal(true);
+        jd_seleccion.pack();
+        jd_seleccion.setLocationRelativeTo(jd_ventana_secundaria);
+        jd_seleccion.setVisible(true);
+    }//GEN-LAST:event_jb_agregarMouseClicked
+
+    private void jb_add_peliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_add_peliMouseClicked
+        // TODO add your handling code here:
+        jd_pelicula_agregar.setModal(true);
+        jd_pelicula_agregar.pack();
+        jd_pelicula_agregar.setLocationRelativeTo(jd_seleccion);
+        jd_pelicula_agregar.setVisible(true);
+    }//GEN-LAST:event_jb_add_peliMouseClicked
+
+    private void jb_addPeli_guardarDATAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_addPeli_guardarDATAMouseClicked
+        // TODO add your handling code here:
+        String nombre= tf_addPeli_nombre.getText();
+        int duracion = (Integer)js_addPeli_duracion.getValue();
+        String categoria = cb_addPeli_categoria.getSelectedItem().toString();
+        String actores = ta_addPeli_actores.getText();
+        String director = tf_addPeli_director.getText();
+        String company = tf_addPeli_company.getText();
+        String idioma= tf_addPeli_Idioma.getText();
+        String doblaje = cb_addPeli_doblaje.getSelectedItem().toString();
+        String subtitles = cb_addPeli_subtitles.getSelectedItem().toString();
+        
+        peliAdmin.cargarArchivo();
+        
+        peliAdmin.setPelicula(new Pelicula(nombre, duracion, categoria,actores,
+                                    director, company, idioma, doblaje, subtitles));
+        
+        try {
+            peliAdmin.escribirArchivo();
+            
+        } catch (IOException ex) {
+            //Logger.getLogger(Menu_Principal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(jd_pelicula_agregar, "A Fatal error ocurred");
+        }
+        JOptionPane.showMessageDialog(jd_pelicula_agregar, "Edit complete...");
+        tf_addPeli_nombre.setText("");
+        tf_addPeli_company.setText("");
+        js_addPeli_duracion.setValue(0);
+        ta_addPeli_actores.setText("");
+        tf_addPeli_director.setText("");
+        tf_addPeli_Idioma.setText("");
+        
+        jd_pelicula_agregar.dispose();
+        jd_pelicula_agregar.setVisible(false);
+        
+        
+    }//GEN-LAST:event_jb_addPeli_guardarDATAMouseClicked
 
     /**
      * @param args the command line arguments
@@ -158,11 +502,47 @@ public class Menu_Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPopupMenu PopUp_menunetflis;
+    private javax.swing.JComboBox cb_addPeli_categoria;
+    private javax.swing.JComboBox cb_addPeli_doblaje;
+    private javax.swing.JComboBox cb_addPeli_subtitles;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTree jTree1;
+    private javax.swing.JButton jb_addPeli_guardarDATA;
+    private javax.swing.JButton jb_add_peli;
+    private javax.swing.JButton jb_add_serie;
+    private javax.swing.JButton jb_agregar;
     private javax.swing.JButton jb_ingresar;
+    private javax.swing.JDialog jd_pelicula_agregar;
+    private javax.swing.JDialog jd_seleccion;
+    private javax.swing.JDialog jd_serie_agregar;
+    private javax.swing.JDialog jd_ventana_secundaria;
+    private javax.swing.JSpinner js_addPeli_duracion;
     private javax.swing.JPasswordField pf_pass_user;
+    private javax.swing.JTextArea ta_addPeli_actores;
+    private javax.swing.JTextField tf_addPeli_Idioma;
+    private javax.swing.JTextField tf_addPeli_company;
+    private javax.swing.JTextField tf_addPeli_director;
+    private javax.swing.JTextField tf_addPeli_nombre;
     private javax.swing.JTextField tf_user;
     // End of variables declaration//GEN-END:variables
 }
