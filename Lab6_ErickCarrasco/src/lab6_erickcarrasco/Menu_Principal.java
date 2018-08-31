@@ -632,14 +632,6 @@ public class Menu_Principal extends javax.swing.JFrame {
         
         if (pass_verify.equals(pass) && user_verify.equals(user_auth)) {
             JOptionPane.showMessageDialog(this, "Ingreso exitosamente");
-            jd_ventana_secundaria.setModal(true);
-            jd_ventana_secundaria.pack();
-            jd_ventana_secundaria.setLocationRelativeTo(this);
-            jd_ventana_secundaria.setVisible(true);
-            pf_pass_user.setText("");
-            tf_user.setText("");
-            
-            
             //Listar Lo activo
             DefaultTreeModel modeloARBOL
                     = (DefaultTreeModel) jt_netflis.getModel();
@@ -661,19 +653,19 @@ public class Menu_Principal extends javax.swing.JFrame {
                 idioma = peliAdmin.getListaPeliculas().get(counter).getIdioma();
                 doblaje = peliAdmin.getListaPeliculas().get(counter).getDoblajevalidate();
                 subtitles = peliAdmin.getListaPeliculas().get(counter).getConsubtitulos();
-                
+
                 for (int i = 0; i < raiz.getChildCount(); i++) {
                     if (raiz.getChildAt(i).toString().equals(categoria)) {
                         DefaultMutableTreeNode p
                                 = new DefaultMutableTreeNode(
                                         new Pelicula(nombre, duracion, categoria, actores,
                                                 director, company, idioma, doblaje, subtitles));
-                        
+
                         ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
                         centinela = 1;
                     }
                 }
-                
+
                 if (centinela == -1) {
                     DefaultMutableTreeNode n
                             = new DefaultMutableTreeNode(categoria);
@@ -684,12 +676,67 @@ public class Menu_Principal extends javax.swing.JFrame {
                             );
                     n.add(p);
                     raiz.add(n);
-                    
+
                 }
                 modeloARBOL.reload();
                 counter++;
-                
+
             }
+
+            //Archivo 2
+            serieAdmin.cargarArchivo();
+            String nombre1, categoria1, actores1, company1, idioma1, doblaje1, subtitles1;
+            int duracion1, temp;
+            int centinela1 = -1;
+            int count1 = 0;
+            for (Serie p : serieAdmin.getListaSeries()) {
+                nombre1 = serieAdmin.getListaSeries().get(count1).getNombre();
+                duracion1 = serieAdmin.getListaSeries().get(count1).getDuracion();
+                categoria1 = serieAdmin.getListaSeries().get(count1).getCategoria();
+                actores1 = serieAdmin.getListaSeries().get(count1).getActores();
+                temp = serieAdmin.getListaSeries().get(count1).getTemp();
+                company1 = serieAdmin.getListaSeries().get(count1).getCompany();
+                idioma1 = serieAdmin.getListaSeries().get(count1).getIdioma();
+                doblaje1 = serieAdmin.getListaSeries().get(count1).getDoblajevalidate();
+                subtitles1 = serieAdmin.getListaSeries().get(count1).getConsubtitulos();
+
+                for (int i = 0; i < raiz.getChildCount(); i++) {
+                    if (raiz.getChildAt(i).toString().equals(categoria1)) {
+                        DefaultMutableTreeNode s
+                                = new DefaultMutableTreeNode(
+                                        new Serie(nombre1, duracion1, categoria1, actores1,
+                                                temp, company1, idioma1, doblaje1, subtitles1));
+
+                        ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(s);
+                        centinela1 = 1;
+                    }
+                }
+
+                if (centinela1 == -1) {
+                    DefaultMutableTreeNode n
+                            = new DefaultMutableTreeNode(categoria1);
+                    DefaultMutableTreeNode s
+                            = new DefaultMutableTreeNode(
+                                    new Serie(nombre1, duracion1, categoria1, actores1,
+                                            temp, company1, idioma1, doblaje1, subtitles1)
+                            );
+                    n.add(s);
+                    raiz.add(n);
+
+                }
+                modeloARBOL.reload();
+                count1++;
+
+            }
+            jd_ventana_secundaria.setModal(true);
+            jd_ventana_secundaria.pack();
+            jd_ventana_secundaria.setLocationRelativeTo(this);
+            jd_ventana_secundaria.setVisible(true);
+            pf_pass_user.setText("");
+            tf_user.setText("");
+
+
+            
 
 
        }else{
